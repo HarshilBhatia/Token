@@ -1,7 +1,7 @@
 {
   "name": "dapp-boilerplate",
   "version": "0.1.0",
-  "description": "basic boilerplate code for building dapps using react",
+  "description": "Cryptocurrency and ico based on the ethereum blockchain",
   "author": "Harshil Bhatia",
   "dependencies": {
     "babel-polyfill": "6.26.0",

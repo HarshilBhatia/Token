@@ -1,32 +1,28 @@
 pragma solidity ^0.5.1;
 
-contract DappToken {
-    string  public name = "My Token";
+contract MyToken {
+    string  public name = "MyToken";
     string  public symbol = "$**$";
     string  public standard = "MyToken v1.0";
     uint256 public totalSupply;
+    mapping(address => uint256) public balanceOf;
 
-    event Approval(
-        address indexed _owner,
-        address indexed _spender,
-        uint256 _value
-    );
+ 
     event Transfer(
         address indexed _from,
         address indexed _to,
         uint256 _value
     );
 
-    mapping(address => uint256) public balanceOf;
     mapping(address => mapping(address => uint256)) public allowance;
-
+ 
     constructor (uint256 _initialSupply) public {
         balanceOf[msg.sender] = _initialSupply;
         totalSupply = _initialSupply;
     }
 
     function transfer(address _to, uint256 _value) public returns (bool success) {
-        require(balanceOf[msg.sender] >= _value," ");
+        require(balanceOf[msg.sender] >= _value,"transfer greater than current balance ");
 
         balanceOf[msg.sender] -= _value;
         balanceOf[_to] += _value;
@@ -35,12 +31,16 @@ contract DappToken {
 
         return true;
     }
+ 
+    event Approval(
+        address indexed _owner,
+        address indexed _spender,
+        uint256 _value
+    );
 
     function approve(address _spender, uint256 _value) public returns (bool success) {
         allowance[msg.sender][_spender] = _value;
-
         emit Approval(msg.sender, _spender, _value);
-
         return true;
     }
 
