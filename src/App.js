@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
 import logo from "./logo.png";
+import Web3 from "web3"
+
+
 class App extends Component {
   // BoilerPlate code to configure web3 and metamask 
   async loadWeb3() {
