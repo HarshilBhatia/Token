@@ -1,8 +1,10 @@
-const MyToken = artifacts.require("MyToken");
-const Ico = artifacts.require("TokenIco");
+var MyToken = artifacts.require("./MyToken.sol");
+var Ico = artifacts.require("./Ico.sol");
 
-module.exports = function (deployer) {
-  deployer.deploy(MyToken, 100000000).then(() => {
-    return deployer.deploy(Ico, MyToken.address, 10000000000000); // multiple arguments can be passed here
-  }); // multiple arguments can be passed here
+module.exports = function(deployer) {
+  deployer.deploy(MyToken, 1000000).then(function() {
+    // Token price is 0.001 Ether
+    var tokenPrice = 1000000000000000;
+    return deployer.deploy(Ico, MyToken.address, tokenPrice);
+  });
 };
